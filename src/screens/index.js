@@ -1,3 +1,5 @@
+import BottomNavigation from "../navigation/BottomNavigation";
+import Chats from "./Chats";
 import Login from "./Login";
 import Signup from "./Signup";
 import Welcome from "./Welcome";
@@ -14,5 +16,9 @@ export const screens = [
     {
         name: 'Signup',
         component: Signup
+    },
+    {
+        name: 'Main',
+        component: BottomNavigation
     },
 ];
