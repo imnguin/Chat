@@ -1,13 +1,15 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, StatusBar, FlatList, Image } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS, SIZES } from '../constants'
-import { Icons } from '../constants/icons'
+import Header from '../components/Header'
+import Icon from '../components/Icon'
 
 const Chats = (props) => {
     let {
         navigation
     } = props;
+
 
     const messsagesData = [
         {
@@ -168,14 +170,15 @@ const Chats = (props) => {
 
     const renderContent = () => {
         return (
-            <View>
+            <View style={{ marginBottom: 40 }}>
                 <FlatList
                     data={messsagesData}
                     showsVerticalScrollIndicator={false}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id.toString()}
                 />
-            </View>
+
+            </View >
         );
     };
 
@@ -239,33 +242,25 @@ const Chats = (props) => {
         </TouchableOpacity>
     );
 
+    const listIcon = [
+        <Icon
+            onPress={() => console.log('AA')}
+            name="qrcode-scan"
+            type="MaterialCommunityIcons"
+            size={18}
+        />,
+        <Icon
+            onPress={() => console.log('AA')}
+            style={{ marginLeft: 15 }}
+            name="plus"
+            type="AntDesign"
+            size={24}
+        />
+    ]
+
     return (
         <SafeAreaView style={styles.area}>
-            <StatusBar hidden={true} />
-            <View style={{ height: 60, backgroundColor: COLORS.white }}>
-                <View style={styles.searchBar}>
-                    <TouchableOpacity>
-                        <Icons.Ionicons name="search-outline" size={24} color={COLORS.gray} />
-                    </TouchableOpacity>
-                    <TextInput
-                        style={{
-                            width: '75%',
-                            marginLeft: 10,
-                            borderRadius: 9,
-                        }}
-                        placeholder="Tìm kiếm"
-                    // onFocus={setStyleInputText(true)}
-                    // value={search}
-                    // onChangeText={handleSearch}
-                    />
-                    <TouchableOpacity>
-                        <Icons.MaterialCommunityIcons name="qrcode-scan" size={18} color={COLORS.gray} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ marginLeft: 15 }}>
-                        <Icons.AntDesign name="plus" size={24} color={COLORS.gray} />
-                    </TouchableOpacity>
-                </View>
-            </View>
+            <Header listIcon={listIcon} />
             <View style={styles.container}>{renderContent()}</View>
         </SafeAreaView>
     )
@@ -274,28 +269,12 @@ const Chats = (props) => {
 const styles = StyleSheet.create({
     area: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#009bf8',
     },
     container: {
         flex: 1,
         backgroundColor: COLORS.white,
         padding: 16,
-    },
-    searchBar: {
-        flexDirection: "row",
-        alignItems: "center",
-        // backgroundColor: 'yellow',
-        // width: SIZES.width - 32,
-        height: 40,
-        marginVertical: 20,
-        paddingHorizontal: 16,
-        borderRadius: 12,
-    },
-    searchInput: {
-        flex: 1,
-        height: "100%",
-        marginHorizontal: 12,
-        backgroundColor: COLORS.white,
     },
     userContainer: {
         width: "100%",

@@ -1,5 +1,4 @@
-import { View, Text, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { COLORS } from '../constants';
 import Chats from '../screens/Chats';
@@ -8,11 +7,28 @@ import Contacts from '../screens/Contacts';
 import Discovery from '../screens/Discovery';
 import Timeline from '../screens/Timeline';
 import Account from '../screens/Account';
+import { Keyboard } from 'react-native';
 const Tab = createBottomTabNavigator();
 
 const BottomNavigation = () => {
+    const [keyboardShown, setKeyboardShown] = useState(false);
+    useEffect(() => {
+        const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
+            setKeyboardShown(true);
+        });
+        const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+            setKeyboardShown(false);
+        });
+
+        return () => {
+            showSubscription.remove();
+            hideSubscription.remove();
+        };
+    }, []);
+
     return (
         <Tab.Navigator
+            detachInactiveScreens
             screenOptions={{
                 headerShown: false,
                 tabBarStyle: {
@@ -22,9 +38,8 @@ const BottomNavigation = () => {
                     right: 0,
                     backgroundColor: COLORS.white,
                     height: Platform.OS === 'ios' ? 110 : 60,
-                    borderTopLeftRadius: 32,
-                    borderTopRightRadius: 32,
                 },
+                tabBarActiveTintColor: '#009bf8',
             }}
         >
             <Tab.Screen
@@ -32,7 +47,7 @@ const BottomNavigation = () => {
                 component={Chats}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <Icons.Ionicons name="chatbox-ellipses-outline" size={24} color={focused ? COLORS.primary : COLORS.gray} />
+                        <Icons.Ionicons name="chatbox-ellipses-outline" size={24} color={focused ? '#009bf8' : COLORS.gray} />
                     ),
                     title: "Tin nhắn",
                 }}
@@ -43,7 +58,7 @@ const BottomNavigation = () => {
                 component={Contacts}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <Icons.FontAwesome name="address-book" size={24} color={focused ? COLORS.primary : COLORS.gray} />
+                        <Icons.AntDesign name="contacts" size={24} color={focused ? '#009bf8' : COLORS.gray} />
                     ),
                     title: "Danh bạ",
                 }}
@@ -54,7 +69,7 @@ const BottomNavigation = () => {
                 component={Discovery}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <Icons.MaterialCommunityIcons name="view-grid-plus-outline" size={24} color={focused ? COLORS.primary : COLORS.gray} />
+                        <Icons.MaterialCommunityIcons name="view-grid-plus-outline" size={24} color={focused ? '#009bf8' : COLORS.gray} />
                     ),
                     title: "Khám phá",
                 }}
@@ -65,7 +80,7 @@ const BottomNavigation = () => {
                 component={Timeline}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <Icons.MaterialCommunityIcons name="clock-time-nine-outline" size={24} color={focused ? COLORS.primary : COLORS.gray} />
+                        <Icons.MaterialCommunityIcons name="clock-time-nine-outline" size={24} color={focused ? '#009bf8' : COLORS.gray} />
                     ),
                     title: "Nhật ký",
                 }}
@@ -76,7 +91,7 @@ const BottomNavigation = () => {
                 component={Account}
                 options={{
                     tabBarIcon: ({ focused }) => (
-                        <Icons.Feather name="user" size={24} color={focused ? COLORS.primary : COLORS.gray} />
+                        <Icons.Feather name="user" size={24} color={focused ? '#009bf8' : COLORS.gray} />
                     ),
                     title: "Cá nhân",
                 }}
