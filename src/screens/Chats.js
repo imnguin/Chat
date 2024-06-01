@@ -19,7 +19,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/164577_thumb.jpg",
             lastSeen: "2023-11-16T04:52:06.501Z",
-            lastMessage: "Địt mọe này thằng ranh con này.",
+            lastMessage: "hello em",
             messageInQueue: 2,
             lastMessageTime: "12:25 PM",
         },
@@ -30,7 +30,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -41,7 +41,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -52,7 +52,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -63,7 +63,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -74,7 +74,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -85,7 +85,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -96,7 +96,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -107,7 +107,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -118,7 +118,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -129,7 +129,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -140,7 +140,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -151,7 +151,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },
@@ -162,7 +162,7 @@ const Chats = (props) => {
             userImg:
                 "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/142188_thumb.jpg",
             lastSeen: "2023-11-18T04:52:06.501Z",
-            lastMessage: "Thế bây giờ mày muốn cái đéo gì? nói",
+            lastMessage: "Chieu nay em co ranh khong?",
             messageInQueue: 0,
             lastMessageTime: "12:15 PM",
         },

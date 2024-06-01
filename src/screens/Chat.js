@@ -1,24 +1,34 @@
-import { View, Text, TouchableOpacity, StatusBar, TextInput, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, TouchableOpacity, StatusBar, TextInput, StyleSheet, TouchableWithoutFeedback, Keyboard, Image } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS } from '../constants'
 import Icon from '../components/Icon'
-import { Bubble, GiftedChat } from 'react-native-gifted-chat'
+import { Bubble, GiftedChat, Time } from 'react-native-gifted-chat'
+import changeNavigationBarColor, { hideNavigationBar, showNavigationBar } from 'react-native-navigation-bar-color'
 const Chat = ({ navigation }) => {
-
     const [messages, setMessages] = useState([]);
     const [inputMessage, setInputMessage] = useState("");
     const handleInputText = (text) => {
         setInputMessage(text);
     }
+
+    useEffect(() => {
+        // Đặt màu cho thanh điều hướng
+        changeNavigationBarColor(COLORS.white, false); // Màu xanh lá cây
+        // hideNavigationBar(isShow);
+    }, []);
+    //Gọi api để xử lý dữ liệu
+    const callAPI = () => {
+
+    }
+
     const renderMessage = (props) => {
         const { currentMessage } = props;
-
         if (currentMessage.user._id === 1) {
             return (
                 <View style={{
                     flex: 1,
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                     justifyContent: 'flex-end'
                 }}>
                     <Bubble
@@ -26,18 +36,67 @@ const Chat = ({ navigation }) => {
                         wrapperStyle={
                             {
                                 right: {
-                                    backgroundColor: COLORS.primary,
+                                    backgroundColor: '#d0f0fd',
                                     marginRight: 12,
-                                    marginVertical: 12
+                                    marginVertical: 6,
+                                    borderRadius: 7
                                 }
                             }
                         }
                         textStyle={{
                             right: {
-                                color: COLORS.white
+                                color: COLORS.black,
+                                fontSize: 15,
                             }
                         }}
+                        renderTime={(bubbleProps) => (
+                            <Time
+                                {...bubbleProps}
+                                timeTextStyle={{
+                                    right: {
+                                        color: COLORS.black,
+                                    }
+                                }}
+                            />
+                        )}
                     />
+                    {
+                        currentMessage._id === messages[0]._id && <View
+                            style={{
+                                alignSelf: 'flex-end',
+                                borderRadius: 7,
+                                backgroundColor: "#B5C0C4",
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                marginHorizontal: 12,
+                                marginBottom: 12,
+                                // width: 55,
+                                justifyContent: 'center'
+                            }}>
+                            <Image
+                                source={{ uri: "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/164577_thumb.jpg" }}
+                                style={{
+                                    height: 17,
+                                    width: 17,
+                                    resizeMode: 'contain',
+                                    borderRadius: 50,
+                                    borderColor: COLORS.white,
+                                    borderWidth: 1
+                                }}
+                            />
+                            {/* <Icon
+                                name="check"
+                                type="Feather"
+                                size={10}
+                            />
+                            <Text style={{
+                                fontSize: 9,
+                                marginLeft: 3,
+                                color : COLORS.white
+                            }}>Đã nhận</Text> */}
+                        </View>
+                    }
+
                 </View>
             )
         } else {
@@ -52,17 +111,29 @@ const Chat = ({ navigation }) => {
                         wrapperStyle={
                             {
                                 left: {
-                                    backgroundColor: COLORS.primary,
-                                    marginRight: 12,
-                                    marginVertical: 12
+                                    backgroundColor: COLORS.white,
+                                    marginLeft: 12,
+                                    marginVertical: 8,
+                                    borderRadius: 7
                                 }
                             }
                         }
                         textStyle={{
                             left: {
-                                color: COLORS.white
+                                color: COLORS.black,
+                                fontSize: 15
                             }
                         }}
+                        renderTime={(bubbleProps) => (
+                            <Time
+                                {...bubbleProps}
+                                timeTextStyle={{
+                                    left: {
+                                        color: COLORS.black,
+                                    }
+                                }}
+                            />
+                        )}
                     />
                 </View>
             )
@@ -74,30 +145,40 @@ const Chat = ({ navigation }) => {
             _id: Math.random().toString(36).toString(7),
             text: inputMessage,
             createdAt: new Date().getTime(),
-            user: { _id: 1 }
-        }
-
-        const cloneMessage = {
-            _id: Math.random().toString(36).toString(7),
-            text: inputMessage,
-            createdAt: new Date().getTime(),
-            user: { _id: 2 }
+            user: { _id: 1 },
+            read: false
         }
 
         setMessages((previousMessage) =>
-            GiftedChat.append(previousMessage, [message, cloneMessage]))
+            GiftedChat.append(previousMessage, [message]))
+        setInputMessage("");
+    }
+
+    const handleSendMessage2 = () => {
+        const message = {
+            _id: Math.random().toString(36).toString(7),
+            text: inputMessage,
+            createdAt: new Date().getTime(),
+            user: { _id: 2 },
+            read: false
+        }
+
+        setMessages((previousMessage) =>
+            GiftedChat.append(previousMessage, [message]))
         setInputMessage("");
     }
 
     return (
         <SafeAreaView style={{
             flex: 1,
-            backgroundColor: '#F5F5F5'
+            backgroundColor: '#e2e9f1'
+            // backgroundColor: '#009bf8'
         }}>
             <StatusBar
-                translucent
+                // translucent
                 backgroundColor="#009bf8"
             />
+
             <View style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
@@ -140,7 +221,7 @@ const Chat = ({ navigation }) => {
                         alignItems: 'center'
                     }}>
                         <Icon
-                            onPress={() => navigation.goBack()}
+                            onPress={handleSendMessage2}
                             name="call-outline"
                             type="Ionicons"
                             color={COLORS.white}
@@ -166,7 +247,6 @@ const Chat = ({ navigation }) => {
 
                 </View>
             </View>
-
             <GiftedChat
                 messages={messages}
                 renderInputToolbar={() => { return null }}
@@ -174,7 +254,6 @@ const Chat = ({ navigation }) => {
                 minInputToolbarHeight={0}
                 renderMessage={renderMessage}
             />
-
             <View style={styles.inputContainer}>
                 <View style={styles.inputMessageContainer}>
                     <View style={{
@@ -184,7 +263,7 @@ const Chat = ({ navigation }) => {
                             onPress={handleSendMessage}
                             name="smile"
                             type="Feather"
-                            color='#009bf8'
+                            color={COLORS.gray}
                         />
                     </View>
                     <TextInput
@@ -216,7 +295,7 @@ const Chat = ({ navigation }) => {
                                         onPress={handleSendMessage}
                                         name="mic"
                                         type="Feather"
-                                        color='#009bf8'
+                                        color={COLORS.gray}
                                     />
                                     <Icon
                                         style={{
@@ -225,7 +304,7 @@ const Chat = ({ navigation }) => {
                                         onPress={handleSendMessage}
                                         name="image"
                                         type="FontAwesome"
-                                        color='#009bf8'
+                                        color={COLORS.gray}
                                     />
                                 </>
                             )
@@ -247,7 +326,7 @@ const styles = StyleSheet.create({
     },
     inputMessageContainer: {
         flexDirection: 'row',
-        // justifyContent: 'center',
+        justifyContent: 'center',
         backgroundColor: COLORS.white,
         alignItems: 'center',
         width: '100%'

@@ -40,7 +40,7 @@ const Icon = (props) => {
         }
     }
     return (
-        <TouchableOpacity style={style} onPress={onPress}>{renderIcon(type)}</TouchableOpacity>
+        <TouchableOpacity disabled={!!onPress ? false : true} style={style} onPress={onPress}>{renderIcon(type)}</TouchableOpacity>
     );
 }
 
