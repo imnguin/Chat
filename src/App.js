@@ -1,23 +1,13 @@
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import React from 'react';
-import { screens } from './screens'
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-const Stack = createNativeStackNavigator();
+import { Provider } from 'react-redux'
+import AppNavigation from './navigation/AppNavigation';
+import { store } from './redux/store';
 
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
-          {
-            screens.map((screen, index) => {
-              return <Stack.Screen key={index} name={screen.name} component={screen.component} />
-            })
-          }
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <AppNavigation />
+    </Provider>
   );
 };
 
