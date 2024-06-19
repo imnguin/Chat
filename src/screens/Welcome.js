@@ -14,7 +14,7 @@ const Welcome = (props) => {
           style={styles.image}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.title}>My Chat</Text>
+          <Text style={styles.title}>Chat Bizlinks</Text>
           <Text style={styles.subTitle}>Trò truyện thật đã với hình ảnh sắc nét.</Text>
         </View>
       </View>

@@ -9,7 +9,7 @@ const AppNavigation = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName="Wellcome" screenOptions={{ headerShown: false }}>
           {
             screens.map((screen, index) => {
               return <Stack.Screen key={index} name={screen.name} component={screen.component} />

@@ -24,6 +24,8 @@ export const _fetchAPI = async (url = '', data = {}, _header = headerDefautl, me
             }
         }
 
+        console.log('requestData', requestData)
+
         let response = await fetch(url, requestData);
 
         const result = await response.json();
