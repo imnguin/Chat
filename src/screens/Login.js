@@ -13,7 +13,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { HOSTNAME } from "../utils/Constants/SystemVar";
 import { useDispatch } from "react-redux";
 import { _fetchLogin } from "../services/callAPI";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getDataStore } from "../utils/funtions";
 
 const Login = ({ navigation }) => {
@@ -24,21 +23,6 @@ const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [color, setColor] = useState("green");
-  // const onLogin = () => {
-  //   if (username == "" || password == "") {
-  //     setMessage("Vui lòng nhập đẩy đủ tài khoản và mật khẩu!");
-  //     setColor("red");
-  //   } else {
-  //     setMessage("Đang kiểm tra thông tin...");
-  //     setColor("green");
-  //     if (username == "0332093438" && password == "nguin00") {
-  //       navigation.navigate("Main");
-  //     } else {
-  //       setMessage("Sai tài khoản hoặc mật khẩu!");
-  //       setColor("red");
-  //     }
-  //   }
-  // };
 
   useEffect(() => {
     const user = getDataStore('logininfo');
@@ -46,8 +30,6 @@ const Login = ({ navigation }) => {
   }, [])
 
   const onLogin = async () => {
-    // console.log('values', values);
-    // setisShowbtnLogin(true);
     const postData = {
       username : username,
       password : password

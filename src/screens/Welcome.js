@@ -1,10 +1,23 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '../components/Button';
 import { COLORS, SIZES } from '../constants';
+import { checkAuthen } from '../services/checkAuthen';
+import { hideNavigationBar } from 'react-native-navigation-bar-color';
 
 const Welcome = (props) => {
   let { navigation } = props;
+
+  // useEffect(() => {
+  //   async function check() {
+  //     await checkAuthen(navigation);
+  //   }
+  //   check();
+  // }, [])
+
+  useEffect(() => {
+    hideNavigationBar();
+  },[])
 
   return (
     <View style={styles.container}>

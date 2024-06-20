@@ -8,15 +8,17 @@ import changeNavigationBarColor, { hideNavigationBar, showNavigationBar } from '
 const Chat = ({ navigation }) => {
     const [messages, setMessages] = useState([]);
     const [inputMessage, setInputMessage] = useState("");
+    const [hiden, setHiden] = useState(true);
     const handleInputText = (text) => {
         setInputMessage(text);
     }
 
     useEffect(() => {
         // Đặt màu cho thanh điều hướng
-        changeNavigationBarColor(COLORS.white, false); // Màu xanh lá cây
+        // changeNavigationBarColor(COLORS.white, false); // Màu xanh lá cây
         // hideNavigationBar(isShow);
-    }, []);
+        hideNavigationBar(hiden);
+    }, [hiden]);
     //Gọi api để xử lý dữ liệu
     const callAPI = () => {
 
@@ -274,6 +276,8 @@ const Chat = ({ navigation }) => {
                             width: inputMessage != "" ? '80%' : '70%'
                         }}
                         multiline={true}
+                        onFocus={() => setHiden(false)}
+                        onBlur={() => setHiden(true)}
                     />
                     <View
                         style={{
