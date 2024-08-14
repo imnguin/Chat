@@ -16,7 +16,7 @@ const Welcome = (props) => {
   // }, [])
 
   useEffect(() => {
-    hideNavigationBar();
+    // hideNavigationBar();
   },[])
 
   return (

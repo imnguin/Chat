@@ -5,24 +5,49 @@ import { COLORS } from '../constants'
 import Icon from '../components/Icon'
 import { Bubble, GiftedChat, Time } from 'react-native-gifted-chat'
 import changeNavigationBarColor, { hideNavigationBar, showNavigationBar } from 'react-native-navigation-bar-color'
+import io from 'socket.io-client'
+import { HOSTNAME } from '../utils/Constants/SystemVar'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 const Chat = ({ navigation }) => {
+    const [socket, setSocket] = useState(null);
     const [messages, setMessages] = useState([]);
     const [inputMessage, setInputMessage] = useState("");
     const [hiden, setHiden] = useState(true);
+    const [userInfo, setUserInfo] = useState(null);
     const handleInputText = (text) => {
         setInputMessage(text);
     }
 
     useEffect(() => {
-        // Đặt màu cho thanh điều hướng
-        // changeNavigationBarColor(COLORS.white, false); // Màu xanh lá cây
-        // hideNavigationBar(isShow);
-        hideNavigationBar(hiden);
-    }, [hiden]);
-    //Gọi api để xử lý dữ liệu
-    const callAPI = () => {
+        getInfo().then((value) => {
+            setUserInfo(value)
+        });
+    }, [])
 
+    const getInfo = async () => {
+        return await AsyncStorage.getItem('logininfo')
     }
+
+    useEffect(() => {
+        // Đặt màu cho thanh điều hướng
+        changeNavigationBarColor(COLORS.white, false); // Màu xanh lá cây
+        // hideNavigationBar(isShow);
+        // hideNavigationBar(hiden);
+        showNavigationBar();
+    }, [hiden]);
+
+    useEffect(() => {
+        const newSocket = io('http://10.0.2.2:8082/'); // Đảm bảo rằng địa chỉ IP và port là chính xác
+        setSocket(newSocket);
+
+        newSocket.on('chat message', (message) => {
+            setMessages((previousMessage) =>
+                GiftedChat.append(previousMessage, [message]))
+        });
+
+        return () => newSocket.close();
+    }, []);
 
     const renderMessage = (props) => {
         const { currentMessage } = props;
@@ -76,7 +101,7 @@ const Chat = ({ navigation }) => {
                                 justifyContent: 'center'
                             }}>
                             <Image
-                                source={{ uri: "https://insite.thegioididong.com/cdninsite/UserImages/reviewed/164577_thumb.jpg" }}
+                                source={{ uri: userInfo.thumbnail }}
                                 style={{
                                     height: 17,
                                     width: 17,
@@ -151,9 +176,13 @@ const Chat = ({ navigation }) => {
             read: false
         }
 
-        setMessages((previousMessage) =>
-            GiftedChat.append(previousMessage, [message]))
-        setInputMessage("");
+        if (socket) {
+            socket.emit('chat message', message);
+            setInputMessage("");
+        }
+
+        // setMessages((previousMessage) =>
+        //     GiftedChat.append(previousMessage, [message]))
     }
 
     const handleSendMessage2 = () => {
@@ -165,13 +194,14 @@ const Chat = ({ navigation }) => {
             read: false
         }
 
-        setMessages((previousMessage) =>
-            GiftedChat.append(previousMessage, [message]))
-        setInputMessage("");
+        if (socket) {
+            socket.emit('chat message', message);
+            setInputMessage("");
+        }
     }
 
     return (
-        <SafeAreaView style={{
+        userInfo && <SafeAreaView style={{
             flex: 1,
             backgroundColor: '#e2e9f1'
             // backgroundColor: '#009bf8'
@@ -207,7 +237,7 @@ const Chat = ({ navigation }) => {
                                 fontWeight: 'bold',
                                 color: COLORS.white
                             }}
-                        >Nguyễn Trung Hiếu
+                        >{userInfo.name}
                         </Text>
                         <Text
                             style={{
