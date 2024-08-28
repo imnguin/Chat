@@ -4,23 +4,58 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Header from '../components/Header'
 import { COLORS } from '../constants'
 import Icon from '../components/Icon'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+const Tab = createMaterialTopTabNavigator()
 
 const Contacts = () => {
-  const renderContent = () => {
-    return (
-      <View>
-        <Text>Đây là nội dung màn hình Danh bạ</Text>
-      </View>
-    );
-  }
-  
   return (
     <SafeAreaView style={styles.area}>
-      <Header
-        listIcon={[
-          <Icon onPress={() => console.log('AA')} name="adduser" type="AntDesign" size={20} />
-        ]} />
-      <View style={styles.container}>{renderContent()}</View>
+      <Header listIcon={[<Icon onPress={() => console.log('AA')} name="adduser" type="AntDesign" size={20} />]} />
+      <View style={styles.container}>
+        <View style={{ flex: 1 }}>
+          <Tab.Navigator
+            screenOptions={{
+              tabBarLabelStyle: {
+                textTransform: 'none'
+              }
+            }}
+          >
+            <Tab.Screen
+              name='friend'
+              children={() => {
+                return (
+                  <View><Text>a</Text></View>
+                )
+              }}
+              options={{
+                tabBarLabel: 'Bạn bè'
+              }}
+            />
+            <Tab.Screen
+              name='group'
+              children={() => {
+                return (
+                  <View><Text>b</Text></View>
+                )
+              }}
+              options={{
+                tabBarLabel: 'Nhóm'
+              }}
+            />
+            <Tab.Screen
+              name='page'
+              children={() => {
+                return (
+                  <View><Text>c</Text></View>
+                )
+              }}
+              options={{
+                tabBarLabel: 'Trang'
+              }}
+            />
+          </Tab.Navigator>
+        </View>
+      </View>
     </SafeAreaView>
   )
 }
@@ -33,7 +68,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
-    padding: 16,
+    flexDirection: 'column',
+    gap: 5
   },
 });
 
