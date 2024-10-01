@@ -1,21 +1,18 @@
-// import { hideLoading, setDataUser, showLoading } from '../Components/Redux/Reducers';
 import { HOST_LIST } from "../utils/Constants/SystemVar";
-import { _fetchAPI } from "../utils/funcRequest"
+import { _fetchAPI, _fetchAPILogin } from "../utils/funcRequest"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setDataStore } from "../utils/funtions";
+import { saveTokens } from "../utils/funcKeychain";
 
 const _fetchLogin = (hostName, apiPath, data) => async (dispatch, state) => {
     try {
-        console.log(`${HOST_LIST[hostName].hostBaseURL}${apiPath}`)
-        // dispatch(showLoading());
-        const apiResult = await _fetchAPI(`${HOST_LIST[hostName].hostBaseURL}${apiPath}`, data);
-        // dispatch(hideLoading());
-
+        const apiResult = await _fetchAPILogin(hostName, apiPath, data);
         if (!apiResult.iserror) {
-            console.log('ok')
-            // await AsyncStorage.setItem('logininfo', JSON.stringify(apiResult.resultObject));
+            const { accessToken, refreshToken } = apiResult.resultObject;
+            await saveTokens(accessToken, refreshToken);
+            delete apiResult.resultObject.accessToken;
+            delete apiResult.resultObject.refreshToken;
             await setDataStore('logininfo', JSON.stringify(apiResult.resultObject));
-            // dispatch(setDataUser(apiResult.resultObject));
             return {
                 ...apiResult,
                 messaege: 'Đăng nhập thành công!',
@@ -43,9 +40,7 @@ const _fetchData = (hostName, apiPath, data, method = 'POST') => async (dispatch
             "token": `Bearer ${logininfo.accessToken}`,
             'Content-Type': 'application/json'
         };
-        // dispatch(showLoading());
-        const apiResult = await _fetchAPI(`${HOST_LIST[hostName].hostBaseURL}${apiPath}`, data, _header);
-        // dispatch(hideLoading());
+        const apiResult = await _fetchAPI(hostName, apiPath, data, _header);
         return apiResult
 
     } catch (error) {

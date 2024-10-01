@@ -30,22 +30,18 @@ const Login = ({ navigation }) => {
   }, [])
 
   const onLogin = async () => {
-    const postData = {
-      username : username,
-      password : password
-    }
-    console.log('postData', postData)
+    const postData = { username, password }
     const response = await dispatch(_fetchLogin(HOSTNAME, 'api/authen/login', postData));
     console.log('a', response)
-    if (!response.iserror) {
-      navigation.navigate("Main");
-    }
-    else {
-        setMessage(response.message);
-        setColor("red");
-        return;
-    }
-};
+    // if (!response.iserror) {
+    //   navigation.navigate("Main");
+    // }
+    // else {
+    //   setMessage(response.message);
+    //   setColor("red");
+    //   return;
+    // }
+  };
 
 
   return (
