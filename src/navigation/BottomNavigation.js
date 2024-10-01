@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { COLORS } from '../constants';
 import Chats from '../screens/Chats';
 import { Icons } from '../constants/icons';
-import Contacts from '../screens/Contacts';
+import Contacts from '../screens/Contacts/Contacts';
 import Discovery from '../screens/Discovery';
 import Timeline from '../screens/Timeline';
 import Account from '../screens/Account';

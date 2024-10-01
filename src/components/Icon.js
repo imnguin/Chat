@@ -35,6 +35,10 @@ const Icon = (props) => {
                 return (
                     <Icons.FontAwesome name={name} size={size || 24} color={color || COLORS.white} />
                 );
+            case 'FontAwesome5':
+                return (
+                    <Icons.FontAwesome5 name={name} size={size || 24} color={color || COLORS.white} />
+                );
             default:
                 break;
         }

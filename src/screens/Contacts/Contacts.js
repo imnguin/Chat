@@ -1,13 +1,18 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, SectionList, ScrollView, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import Header from '../components/Header'
-import { COLORS } from '../constants'
-import Icon from '../components/Icon'
+import Header from '../../components/Header'
+import { COLORS } from '../../constants'
+import Icon from '../../components/Icon'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
+import TabFriend from './TabFriend'
 const Tab = createMaterialTopTabNavigator()
 
-const Contacts = () => {
+const Contacts = (props) => {
+  let {
+    navigation
+  } = props;
+
   return (
     <SafeAreaView style={styles.area}>
       <Header listIcon={[<Icon onPress={() => console.log('AA')} name="adduser" type="AntDesign" size={20} />]} />
@@ -23,9 +28,7 @@ const Contacts = () => {
             <Tab.Screen
               name='friend'
               children={() => {
-                return (
-                  <View><Text>a</Text></View>
-                )
+                return <TabFriend {...props} />
               }}
               options={{
                 tabBarLabel: 'Bạn bè'

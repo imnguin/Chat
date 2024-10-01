@@ -34,8 +34,9 @@ const Login = ({ navigation }) => {
       username : username,
       password : password
     }
+    console.log('postData', postData)
     const response = await dispatch(_fetchLogin(HOSTNAME, 'api/authen/login', postData));
-    console.log(response)
+    console.log('a', response)
     if (!response.iserror) {
       navigation.navigate("Main");
     }

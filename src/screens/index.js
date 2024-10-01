@@ -2,6 +2,7 @@ import BottomNavigation from "../navigation/BottomNavigation";
 import Chat from "./Chat";
 import Chats from "./Chats";
 import Login from "./Login";
+import Profile from "./Profile";
 import Signup from "./Signup";
 import Welcome from "./Welcome";
 
@@ -25,5 +26,9 @@ export const screens = [
     {
         name: 'Chat',
         component: Chat
+    },
+    {
+        name: 'Profile',
+        component: Profile
     },
 ];

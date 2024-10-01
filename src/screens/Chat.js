@@ -21,7 +21,8 @@ const Chat = ({ navigation }) => {
 
     useEffect(() => {
         getInfo().then((value) => {
-            setUserInfo(value)
+            console.log('value', value)
+            setUserInfo(JSON.parse(value))
         });
     }, [])
 
@@ -181,8 +182,8 @@ const Chat = ({ navigation }) => {
             setInputMessage("");
         }
 
-        // setMessages((previousMessage) =>
-        //     GiftedChat.append(previousMessage, [message]))
+        setMessages((previousMessage) =>
+            GiftedChat.append(previousMessage, [message]))
     }
 
     const handleSendMessage2 = () => {
@@ -262,8 +263,8 @@ const Chat = ({ navigation }) => {
                         <Icon
                             style={{ marginLeft: 20 }}
                             onPress={() => navigation.goBack()}
-                            name="videocamera"
-                            type="AntDesign"
+                            name="videocam-outline"
+                            type="Ionicons"
                             color={COLORS.white}
                             size={22}
                         />
@@ -346,7 +347,6 @@ const Chat = ({ navigation }) => {
                     </View>
                 </View>
             </View>
-
         </SafeAreaView>
     )
 }

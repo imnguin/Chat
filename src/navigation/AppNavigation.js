@@ -14,7 +14,7 @@ const AppNavigation = () => {
       if (await checkAuthen()) {
         setInitialRouteName('Main');
       } else {
-        setInitialRouteName('Main');
+        setInitialRouteName('Login');
       }
     }
     check();
